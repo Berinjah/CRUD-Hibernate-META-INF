@@ -32,16 +32,16 @@ public class ClienteJpaDAO {
 
               return entityManager;
     }
-
+    //lista uum cliente pelo seu id
     public Cliente getById(final int id) {
               return entityManager.find(Cliente.class, id);
     }
-
+    //lista todos os clientes
     @SuppressWarnings("unchecked")
     public List<Cliente> findAll() {
               return entityManager.createQuery("FROM " + Cliente.class.getName()).getResultList();
     }
-
+    //insere um dado na tabela 
     public void persist(Cliente cliente) {
               try {
                        entityManager.getTransaction().begin();
@@ -52,7 +52,7 @@ public class ClienteJpaDAO {
                        entityManager.getTransaction().rollback();
               }
     }
-
+    //atualiza um dado na tabela
     public void merge(Cliente cliente) {
               try {
                        entityManager.getTransaction().begin();
@@ -63,7 +63,7 @@ public class ClienteJpaDAO {
                        entityManager.getTransaction().rollback();
               }
     }
-
+    //remove um cliente, mas deve-se passar todos os parâmetros do cliente
     public void remove(Cliente cliente) {
               try {
                        entityManager.getTransaction().begin();
@@ -75,7 +75,7 @@ public class ClienteJpaDAO {
                        entityManager.getTransaction().rollback();
               }
     }
-
+    //remove um cliente pelo seu id
     public void removeById(final int id) {
               try {
                        Cliente cliente = getById(id);

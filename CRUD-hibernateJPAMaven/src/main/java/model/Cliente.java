@@ -3,6 +3,8 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +18,11 @@ public class Cliente {
     private String cpf;
     @Column
     private String rg;
+    @ManyToOne
+    @JoinColumn
+    private int idVendedorResponsavel;
     
-    public int getId() {
+	public int getId() {
               return id;
     }
     public void setId(int id) {
@@ -41,4 +46,10 @@ public class Cliente {
     public void setRg(String rg) {
               this.rg = rg;
     }
+    public int getIdVendedorResponsavel() {
+		return idVendedorResponsavel;
+	}
+	public void setIdVendedorResponsavel(int idVendedorResponsavel) {
+		this.idVendedorResponsavel = idVendedorResponsavel;
+	}
 }

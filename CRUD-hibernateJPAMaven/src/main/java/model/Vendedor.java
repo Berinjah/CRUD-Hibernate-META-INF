@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +13,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_vendedor")
 public class Vendedor {
-	@OneToMany (mappedBy="id_vendedor", targetEntity=Cliente.class, cascade=CascadeType.ALL)
 	@Id
-	private int id;
+	private int id_vendedor;
 	@Column
 	private String nome;
 	@Column
@@ -23,12 +25,14 @@ public class Vendedor {
 	private String rg;
 	@Column
 	private String ctps;
+	@OneToMany(mappedBy="id_vendedor", targetEntity=Cliente.class, cascade=CascadeType.ALL)
+	private List<Cliente> clientes;
 	
 	public int getId() {
-		return id;
+		return id_vendedor;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int id_vendedor) {
+		this.id_vendedor = id_vendedor;
 	}
 	public String getNome() {
 		return nome;

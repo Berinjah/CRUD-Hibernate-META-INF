@@ -8,10 +8,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "tb_cliente")
 public class Cliente {
 	@Id
-    private int id;
+    private int id_cliente;
     @Column
     private String nome;
     @Column
@@ -19,14 +19,14 @@ public class Cliente {
     @Column
     private String rg;
     @ManyToOne
-    @JoinColumn
-    private int idVendedorResponsavel;
+    @JoinColumn(name="id_vendedor")
+    private Vendedor id_vendedor;
     
 	public int getId() {
-              return id;
+              return id_cliente;
     }
-    public void setId(int id) {
-              this.id = id;
+    public void setId(int id_cliente) {
+              this.id_cliente = id_cliente;
     }
     public String getNome() {
               return nome;
@@ -46,10 +46,10 @@ public class Cliente {
     public void setRg(String rg) {
               this.rg = rg;
     }
-    public int getIdVendedorResponsavel() {
-		return idVendedorResponsavel;
+    public Vendedor getId_vendedor() {
+		return id_vendedor;
 	}
-	public void setIdVendedorResponsavel(int idVendedorResponsavel) {
-		this.idVendedorResponsavel = idVendedorResponsavel;
+	public void setId_vendedor(Vendedor id_vendedor) {
+		this.id_vendedor = id_vendedor;
 	}
 }

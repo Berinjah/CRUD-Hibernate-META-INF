@@ -6,21 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Cliente;
+import model.Vendedor;
 
-public class ClienteJpaDAO {
-	private static ClienteJpaDAO instance;
+public class VendedorJpaDAO {
+	private static VendedorJpaDAO instance;
     protected EntityManager entityManager;
     
-    public static ClienteJpaDAO getInstance(){
+    public static VendedorJpaDAO getInstance(){
               if (instance == null){
-                       instance = new ClienteJpaDAO();
+                       instance = new VendedorJpaDAO();
               }
               
               return instance;
     }
 
-    private ClienteJpaDAO() {
+    private VendedorJpaDAO() {
               entityManager = getEntityManager();
     }
 
@@ -32,20 +32,20 @@ public class ClienteJpaDAO {
 
               return entityManager;
     }
-    //lista uu cliente pelo seu id
-    public Cliente getById(final int id) {
-              return entityManager.find(Cliente.class, id);
+    //lista um vendedor pelo seu id
+    public Vendedor getById(final int id) {
+              return entityManager.find(Vendedor.class, id);
     }
-    //lista todos os clientes
+    //lista todos os vendedores
     @SuppressWarnings("unchecked")
-    public List<Cliente> findAll() {
-              return entityManager.createQuery("FROM " + Cliente.class.getName()).getResultList();
+    public List<Vendedor> findAll() {
+              return entityManager.createQuery("FROM " + Vendedor.class.getName()).getResultList();
     }
     //insere um dado na tabela 
-    public void persist(Cliente cliente) {
+    public void persist(Vendedor vendedor) {
               try {
                        entityManager.getTransaction().begin();
-                       entityManager.persist(cliente);
+                       entityManager.persist(vendedor);
                        entityManager.getTransaction().commit();
               } catch (Exception ex) {
                        ex.printStackTrace();
@@ -53,33 +53,33 @@ public class ClienteJpaDAO {
               }
     }
     //atualiza um dado na tabela
-    public void merge(Cliente cliente) {
+    public void merge(Vendedor vendedor) {
               try {
                        entityManager.getTransaction().begin();
-                       entityManager.merge(cliente);
+                       entityManager.merge(vendedor);
                        entityManager.getTransaction().commit();
               } catch (Exception ex) {
                        ex.printStackTrace();
                        entityManager.getTransaction().rollback();
               }
     }
-    //remove um cliente, mas deve-se passar todos os parâmetros do cliente
-    public void remove(Cliente cliente) {
+    //remove um vendedor, mas deve-se passar todos os parâmetros do vendedor
+    public void remove(Vendedor vendedor) {
               try {
                        entityManager.getTransaction().begin();
-                       cliente = entityManager.find(Cliente.class, cliente.getId());
-                       entityManager.remove(cliente);
+                       vendedor = entityManager.find(Vendedor.class, vendedor.getId());
+                       entityManager.remove(vendedor);
                        entityManager.getTransaction().commit();
               } catch (Exception ex) {
                        ex.printStackTrace();
                        entityManager.getTransaction().rollback();
               }
     }
-    //remove um cliente pelo seu id
+    //remove um vendedor pelo seu id
     public void removeById(final int id) {
               try {
-                       Cliente cliente = getById(id);
-                       remove(cliente);
+                       Vendedor vendedor = getById(id);
+                       remove(vendedor);
               } catch (Exception ex) {
                        ex.printStackTrace();
               }
